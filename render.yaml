@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: django-backend
+    env: docker
+    plan: free
+    buildCommand: ""
+    startCommand: gunicorn backend.wsgi:application --bind 0.0.0.0:8000
+    postDeployCommand: |
+      python manage.py migrate &&
+      python manage.py createadmin
