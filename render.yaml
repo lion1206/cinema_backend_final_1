@@ -2,9 +2,5 @@ services:
   - type: web
     name: cinema-backend
     env: python
-    plan: free
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn backend.wsgi:application --bind 0.0.0.0:$PORT"
-    postDeploy:
-      - python manage.py migrate
-      - python manage.py createsu
+    buildCommand: "pip install -r requirements.txt && python manage.py migrate --noinput && python manage.py collectstatic --noinput"
+    startCommand: "gunicorn cinema_backend.wsgi:application --bind 0.0.0.0:$PORT"
