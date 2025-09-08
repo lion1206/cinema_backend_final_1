@@ -20,10 +20,9 @@ class RegisterView(APIView):
             return Response({"error": "Пользователь уже существует"}, status=status.HTTP_400_BAD_REQUEST)
 
         user = User.objects.create_user(username=username, password=password, email=email)
-
         refresh = RefreshToken.for_user(user)
         return Response({
             "message": "Пользователь создан",
             "refresh": str(refresh),
-            "access": str(refresh.access_token)
+            "access": str(refresh.access_token),
         }, status=status.HTTP_201_CREATED)
