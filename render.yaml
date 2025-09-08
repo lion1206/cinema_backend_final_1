@@ -1,12 +1,16 @@
 services:
   - type: web
-    name: backend
+    name: cinema-backend
     env: python
     plan: free
     buildCommand: "pip install -r requirements.txt && python manage.py migrate --noinput && python manage.py collectstatic --noinput"
-    startCommand: "gunicorn cinema_backend.wsgi:application --bind 0.0.0.0:$PORT"
+    startCommand: "gunicorn backend.wsgi:application --bind 0.0.0.0:$PORT"
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: backend.settings
-      - key: PYTHON_VERSION
-        value: 3.10
+      - key: DEFAULT_SUPERUSER
+        value: admin
+      - key: DEFAULT_SUPERPASS
+        value: admin123
+      - key: DEFAULT_SUPEREMAIL
+        value: admin@example.com
