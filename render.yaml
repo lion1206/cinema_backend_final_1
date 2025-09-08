@@ -7,6 +7,6 @@ services:
     startCommand: "gunicorn cinema_backend.wsgi:application --bind 0.0.0.0:$PORT"
     envVars:
       - key: DJANGO_SETTINGS_MODULE
-        value: cinema_backend.settings
+        value: backend.settings
       - key: PYTHON_VERSION
         value: 3.10
