@@ -4,5 +4,11 @@ services:
     env: python
     buildCommand: pip install -r requirements.txt
     startCommand: bash entrypoint.sh
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: backend.settings
+      - key: PYTHONUNBUFFERED
+        value: "1"
     postDeployCommand: |
       python manage.py migrate --noinput
+      python manage.py collectstatic --noinput
