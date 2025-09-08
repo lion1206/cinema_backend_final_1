@@ -8,6 +8,8 @@ services:
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: backend.settings
+      - key: DATABASE_URL
+        value: "postgres://username:password@hostname:5432/dbname"  # Render Postgres
       - key: DEFAULT_SUPERUSER
         value: admin
       - key: DEFAULT_SUPERPASS

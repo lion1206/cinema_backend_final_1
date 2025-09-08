@@ -7,7 +7,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-# Применяем миграции, создаем тестовых пользователей и билеты, собираем статику
+# Миграции, создание суперпользователя и тестовых данных, сбор статики, запуск Gunicorn
 CMD python manage.py migrate --noinput && \
     python manage.py createsu && \
     python manage.py collectstatic --noinput && \
